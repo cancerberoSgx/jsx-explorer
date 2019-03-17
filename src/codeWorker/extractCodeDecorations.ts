@@ -1,24 +1,15 @@
-// adapted from https://github.com/CompuIves/codesandbox-client/blob/196301c919dd032dccc08cbeb48cf8722eadd36b/packages/app/src/app/components/CodeEditor/Monaco/workers/syntax-highlighter.js
-
-import Project, {SourceFile, TypeChecker, createWrappedNode, Node, TypeGuards, Type, ts} from 'ts-simple-ast'
-import {lastRequest} from './codeWorker'
-import {CodeWorkerRequest} from '../store/types'
-import {buildBaseKind, buildBaseKindOfNode, ParentShipKind, buildParentShipKind} from './typeStructure'
-import {tryTo} from '../util/util'
-import {createProject} from './ts-simple-ast'
-
-type Modifier = string //'readonly'
+import Project, { Node, SourceFile, TypeGuards } from 'ts-simple-ast';
+import { CodeWorkerRequest } from '../store/types';
+import { lastRequest } from './codeWorker';
+import { createProject } from './ts-simple-ast';
 
 export interface Classification {
   startColumn: number
   startLineNumber: number
   endLineNumber: number
-  // modifiers?: Modifier[]
   endColumn: number
   kind: string
   parentKind?: string
-  // type?: ParentShipKind
-  // nodeType?: string
   extra?: string[]
 }
 
@@ -44,21 +35,7 @@ export function extractCodeDecorations(data: CodeWorkerRequest, sourceFile?: Sou
 }
 
 function filterNonJsxRelatedNodes(n: Node) {
-  // this is faster - we just dont want syntax list since they pollute a lot the JSX.
   return n.getKindName() !== 'SyntaxList'
-
-  // But these are other more elegant ways:
-
-  // // only pass those with ancestors or with first-level children which are JSX :
-  // if (n.getKindName()!.toLowerCase().includes('jsx')) {
-  //   return true
-  // }
-  // else if(n.getFirstAncestor(a=>a.getKindName()!.toLowerCase().includes('jsx'))){
-  //   return true
-  // }
-  // else {
-  //   return n.getFirstChild(a=>a.getKindName()!.toLowerCase().includes('jsx')))
-  // }
 }
 
 function addChildNodes(node: Node, classifications: Classification[], sourceFile: SourceFile, project: Project) {
@@ -72,7 +49,6 @@ function addChildNodes(node: Node, classifications: Classification[], sourceFile
     .forEach(node => {
       const parent = node.getParent()
       const parentKind = parent && parent.getKindName()
-      // const type = tryTo(() => buildParentShipKind({ node: node, project })[0]) || undefined
       const kind = node.getKindName()
       const extra = getExtra(node)
       getNodeRangesForMonaco(node, lines).forEach(r => {
@@ -80,7 +56,6 @@ function addChildNodes(node: Node, classifications: Classification[], sourceFile
           ...r,
           kind,
           parentKind,
-          // type,
           extra,
         })
       })
@@ -155,20 +130,3 @@ function getParentRanges(node: Node) {
   }
   return ranges
 }
-
-// function getNodeRangeForMonaco(node: Node, lines: number[]){
-//   return {
-//     startColumn: node.getStartLinePos()+1,//  n.getst ts.getLineAndCharacterOfPosition(n.getSourceFile().compilerNode, n.compilerNode.getStart()).character + 1,
-//     startLineNumber: node.getStartLineNumber()+1,
-//     endColumn: ts.getLineAndCharacterOfPosition(node.getSourceFile().compilerNode, node.compilerNode.getEnd()).character + 1,
-//     endLineNumber: node.getEndLineNumber()+1////ts.getLineAndCharacterOfPosition(n.getSourceFile().compilerNode, n.compilerNode.getEnd()).line + 1,
-//   }
-// }
-// function getNodeRangesForMonaco2(node: Node, lines: number[]){
-//   return [getNodeRangeForMonaco(node, lines)]
-//   // const ranges:any[] = []
-//   // node.forEachChild(child=>{
-//   //   ranges.push(getNodeRangeForMonaco(child, lines))
-//   // })
-//   // return ranges
-// }

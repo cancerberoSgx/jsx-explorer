@@ -10,14 +10,7 @@ import {isMobile} from '../../../util/media'
 import {Compiled, State} from '../../../store/types'
 import {connect} from 'react-redux'
 
-// interface P extends ExplorerProps {
-//   onSelectCode?(sel: SelectCode): void
-//   options?: CompiledExplorerOptions
-//   compiled: Compiled
-// }
 interface P {
-  // onSelectCode?(sel: SelectCode): void
-  // options?: CompiledExplorerOptions
   compiled: Compiled
 }
 interface S {

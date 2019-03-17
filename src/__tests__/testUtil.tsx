@@ -11,10 +11,9 @@ export async function expectElement(
   return expect(page).toHave({
     selector,
     text,
-    // verb: 'toContain',
     asCode: true,
     caseInsensitive: true,
-    extractAs: 'outerHTML', // a: <input onc></input>
+    extractAs: 'outerHTML', 
   })
 }
 
@@ -22,7 +21,6 @@ export async function expectNotExist(page: Page, selector: string, text?: string
   return expect(page).not.toHave({
     selector,
     text,
-    // verb: 'toContain',
     asCode: true,
     caseInsensitive: true,
     extractAs: 'outerHTML',
@@ -63,26 +61,3 @@ export function wait(ms: number): Promise<void> {
   })
 }
 
-// const r = await page.evaluate((selector) => {
-//   const e = document.querySelector(selector)
-//   return e ? e.outerHTML : undefined
-// }, selector)
-// if (negate && r) {
-//   throw new Error(`Expected ${r} to be undefined`)
-// }
-// if (!negate && !r) {
-//   throw new Error(`Expected ${r} to be defined`)
-
-// }
-// // negate ? expect(r).not.toBeDefined() : expect(r).toBeDefined()
-// if (text) {
-//   const a = mode === 'asCodeIncludes' ? r.toLowerCase().replace(/\s+/g, ' ') : r.toLowerCase()
-//   const b = mode === 'asCodeIncludes' ? text.toLowerCase().replace(/\s+/g, ' ') : text.toLowerCase()
-//   if (r && text && !negate) {
-//     expect(a).toContain(b)
-//   }
-//   if (negate) {
-//     expect(!r || !text || !a.includes(b)).toBe(true)
-//   }
-// }
-// }

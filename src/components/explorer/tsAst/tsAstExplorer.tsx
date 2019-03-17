@@ -140,9 +140,7 @@ class TsSimpleAstExplorer_ extends Component<P, S> {
   }
 }
 
-registerStyle(`
-
-${css('.tsAstExplorerContent li ul', `padding-left: .7em`, `padding-left 1.8em`)}
+registerStyle(` 
 
 .tsAstExplorerContent ul {
   list-style: none;

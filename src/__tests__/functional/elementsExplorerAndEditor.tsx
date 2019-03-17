@@ -80,7 +80,6 @@ describe('elements explorer', () => {
       text: 'SyntaxError',
       waitForSelector: true,
     })
-    // await wait(500)
     await page.screenshot({path: './tmp/02-clear.png'})
     // await expectNotExist(page, '.explorer .media-content em')
   })
