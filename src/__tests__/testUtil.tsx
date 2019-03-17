@@ -13,7 +13,7 @@ export async function expectElement(
     text,
     asCode: true,
     caseInsensitive: true,
-    extractAs: 'outerHTML', 
+    extractAs: 'outerHTML',
   })
 }
 
@@ -60,4 +60,3 @@ export function wait(ms: number): Promise<void> {
     }, ms)
   })
 }
-

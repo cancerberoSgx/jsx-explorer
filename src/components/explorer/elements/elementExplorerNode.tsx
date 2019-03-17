@@ -55,8 +55,6 @@ export class Node extends Component<P, S> {
               {collapsed ? '+' : '-'}
             </button>
 
-            <h4 className="nodeTag">{`<${node.tag}>`}</h4>
-
             <button
               className="button overlay is-small"
               title="HTML code"
@@ -66,6 +64,8 @@ export class Node extends Component<P, S> {
               className="button overlay is-small"
               title="Outline in Editor"
               onClick={e => this.showDetails(node)}>{`!`}</button>
+
+            <h4 className="nodeTag">{`<${node.tag}>`}</h4>
 
             {!collapsed && (
               <div className="nodeContent">

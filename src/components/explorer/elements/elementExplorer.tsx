@@ -52,7 +52,15 @@ class ElementExplorer_ extends Component<P, S> {
           <button
             className="button"
             title="See HTML code"
-            onClick={e => showInModal(<ElementNodeHtmlCodeModal html={jsonImplOutputElAsHtml(result!)} />, 'HTML')}>
+            onClick={e =>
+              showInModal(
+                <ElementNodeHtmlCodeModal
+                  html={jsonImplOutputElAsHtml(result!)}
+                  emittedJs={this.props.compiled.response!.evaluate.evaluated}
+                />,
+                'HTML',
+              )
+            }>
             HTML output of everything
           </button>
 
@@ -81,7 +89,12 @@ class ElementExplorer_ extends Component<P, S> {
             <Node
               node={result}
               {...this.state}
-              onShowHtml={html => showInModal(<ElementNodeHtmlCodeModal html={html} />, 'HTML')}
+              onShowHtml={html =>
+                showInModal(
+                  <ElementNodeHtmlCodeModal html={html} emittedJs={this.props.compiled.response!.evaluate.evaluated} />,
+                  'HTML',
+                )
+              }
             />
           )}
 
@@ -94,40 +107,48 @@ class ElementExplorer_ extends Component<P, S> {
   }
 }
 
-function ElementNodeHtmlCodeModal(props: {html: string}) {
+function ElementNodeHtmlCodeModal(props: {html: string; emittedJs: string}) {
   return (
     <div id="getHtmlCodeModalContent">
       <div className="tabs is-small is-boxed is-toggle">
         <ul>
-          <li className="html-code is-active">
+          <li className="activatable html-code is-active">
             <a
               onClick={e => {
-                queryAll('#getHtmlCodeModalContent .html, #getHtmlCodeModalContent .html-code').forEach(e =>
-                  e.classList.remove('is-active'),
-                )
+                queryAll('#getHtmlCodeModalContent .activatable').forEach(e => e.classList.remove('is-active'))
                 queryAll('#getHtmlCodeModalContent .html-code').forEach(e => e.classList.add('is-active'))
               }}>
               Code
             </a>
           </li>
-          <li className="html">
+          <li className="activatable html">
             <a
               onClick={e => {
-                queryAll('#getHtmlCodeModalContent .html, #getHtmlCodeModalContent .html-code').forEach(e =>
-                  e.classList.remove('is-active'),
-                )
+                queryAll('#getHtmlCodeModalContent .activatable').forEach(e => e.classList.remove('is-active'))
                 queryAll('#getHtmlCodeModalContent .html').forEach(e => e.classList.add('is-active'))
               }}>
               HTML
             </a>
           </li>
+          <li className="activatable emittedJs">
+            <a
+              onClick={e => {
+                queryAll('#getHtmlCodeModalContent .activatable').forEach(e => e.classList.remove('is-active'))
+                queryAll('#getHtmlCodeModalContent .emittedJs').forEach(e => e.classList.add('is-active'))
+              }}>
+              JavaScript
+            </a>
+          </li>
         </ul>
       </div>
-      <div className="html-code-container html-code is-active">
+      <div className="activatable html-code-container html-code is-active">
         <pre dangerouslySetInnerHTML={{__html: escapeHtml(props.html)}} />
       </div>
-      <div className="html-code-container html">
+      <div className="activatable html-code-container html">
         <div className="content" dangerouslySetInnerHTML={{__html: props.html}} />
+      </div>
+      <div className="activatable html-code-container emittedJs">
+        <pre className="content" dangerouslySetInnerHTML={{__html: props.emittedJs}} />
       </div>
     </div>
   )

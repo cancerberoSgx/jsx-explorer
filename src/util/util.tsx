@@ -82,3 +82,7 @@ export function delay(ms: number): Promise<void> {
     }, ms)
   })
 }
+
+export function isProduction() {
+  return !location.href.includes('localhost')
+}

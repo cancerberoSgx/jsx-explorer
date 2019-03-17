@@ -57,7 +57,6 @@ class JsxColorsMain_ extends Component<P, S> {
         </div>
 
         <div className={`editorExplorerBody`}>
-          <div className={`editorExplorerBodyOverlay`}>Working...</div>
           <div className={`editor editorExplorerBodyMember ${!this.props.selected ? 'is-active' : ''}`}>
             <JsxColorSkins {...this.props} />
           </div>

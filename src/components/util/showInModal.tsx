@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import {Component} from './component'
-import {Emitter} from '../../util/util'
+import {Emitter, queryAll} from '../../util/util'
 
 let created = false
 
@@ -50,4 +50,8 @@ class Modal extends Component<P, S> {
       </div>
     )
   }
+}
+
+export function closeModal() {
+  queryAll('.modal').forEach(m => m.classList.remove('is-active'))
 }

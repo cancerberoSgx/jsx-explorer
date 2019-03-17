@@ -12,7 +12,7 @@ import {DiagnosticComponent} from './tsAstDiagnostic'
 import {NodeComponent} from './tsAstNode'
 
 interface P {
-  onSelectCode?(sel: SelectCode): void
+  // onSelectCode?(sel: SelectCode): void
   compiled: Compiled
 }
 interface S {
@@ -112,7 +112,7 @@ class TsSimpleAstExplorer_ extends Component<P, S> {
                 <ul>
                   {diagnostics.map(d => (
                     <li>
-                      <DiagnosticComponent d={d} onSelectCode={this.props.onSelectCode} />
+                      <DiagnosticComponent d={d} onSelectCode={onSelectCode} />
                     </li>
                   ))}
                 </ul>
@@ -129,7 +129,7 @@ class TsSimpleAstExplorer_ extends Component<P, S> {
             disableEditorBind={disableEditorBind}
             onShowDetailsOf={n => {
               dispatch({type: COMPILED_ACTION.CHANGE_EXPLORER_OPTIONS, payload: {showDetailsOf: n}})
-              this.props.onSelectCode && this.props.onSelectCode(n)
+              onSelectCode(n)
             }}
           />
         </div>
@@ -155,9 +155,9 @@ export interface SelectCode {
 }
 
 export function onSelectCode(sel: SelectCode): void {
-  getMonacoInstance()!.setSelection(sel)
-  getMonacoInstance()!.revealLineInCenterIfOutsideViewport(sel.startLineNumber, monaco.editor.ScrollType.Smooth)
   getMonacoInstance()!.focus()
+  getMonacoInstance()!.revealLineInCenterIfOutsideViewport(sel.startLineNumber, monaco.editor.ScrollType.Immediate)
+  getMonacoInstance()!.setSelection(sel)
 }
 
 export const TsSimpleAstExplorer = connect((state: State) => ({

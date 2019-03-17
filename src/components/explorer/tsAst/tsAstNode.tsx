@@ -53,8 +53,6 @@ export class NodeComponent extends Component<P, S> {
             {collapsed ? '+' : '-'}
           </button>
 
-          <span className="nodeName">{node.kind}</span>
-
           <button
             className="button is-small overlay"
             onClick={e => {
@@ -63,6 +61,8 @@ export class NodeComponent extends Component<P, S> {
             }}>
             !
           </button>
+
+          <span className="nodeName">{node.kind}</span>
 
           {!collapsed && (showDetailsOf === node || this.props.showDetailsOfEverything) && (
             <div className="nodeInfo content" ref={this.el}>
@@ -79,7 +79,7 @@ export class NodeComponent extends Component<P, S> {
           )}
 
           {!collapsed && (
-            <ul>
+            <ul className="nodeContent">
               {node.children.map((c, i) => (
                 <li>
                   <NodeComponent
@@ -103,6 +103,7 @@ export class NodeComponent extends Component<P, S> {
 registerStyle(`
 .tsAstExplorerNode .nodeName {
   font-weight: bolder;
+  margin: 0 .5em;
 }
 .tsAstExplorerNode.selected{
   border: 3px solid pink;

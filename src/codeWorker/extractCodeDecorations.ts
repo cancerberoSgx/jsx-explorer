@@ -1,7 +1,7 @@
-import Project, { Node, SourceFile, TypeGuards } from 'ts-simple-ast';
-import { CodeWorkerRequest } from '../store/types';
-import { lastRequest } from './codeWorker';
-import { createProject } from './ts-simple-ast';
+import Project, {Node, SourceFile, TypeGuards} from 'ts-simple-ast'
+import {CodeWorkerRequest} from '../store/types'
+import {lastRequest} from './codeWorker'
+import {createProject} from './ts-simple-ast'
 
 export interface Classification {
   startColumn: number
