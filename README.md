@@ -1,9 +1,10 @@
 # JSX Explorer
 
-Allow to write JSX code (TypeScript or JavaScript), parse it and then show the structure of the code in different ways:
+Playground to Write, parse, analyze, visualize JSX/TSX code in several ways: 
 
  * Elements Explorer shows the result JSX expressions translated to React.createElement() or similar call.
  * JSX AST Explorer shows the abstract syntax tree of the JavaScript code
+ * Gallery and editor of JSX syntax highlight
 
 Based on:
 

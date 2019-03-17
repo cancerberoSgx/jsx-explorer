@@ -1,7 +1,7 @@
 {
   "name": "jsx-explorer",
   "version": "0.0.1",
-  "description": "",
+  "description": "Playground to Write, parse, analyze, visualize JSX/TSX code in several ways",
   "private": true,
   "source": true,
   "main": "dist/src/index.js",
