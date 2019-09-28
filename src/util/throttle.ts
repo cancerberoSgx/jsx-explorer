@@ -7,18 +7,15 @@ export function throttle<F extends (...args: any[]) => any>(
   let timeout: any = null
   let previous = 0
   options || (options = {})
-
   let later = function() {
     previous = options.leading === false ? 0 : Date.now()
     timeout = null
     result = func.apply(context, args)
     context = args = null
   }
-
   return function(this: any) {
     let now = Date.now()
     if (!previous && options.leading === false) previous = now
-
     let remaining = wait - (now - previous)
     context = this
     args = arguments

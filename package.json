@@ -35,24 +35,23 @@
   "dependencies": {
     "deepmerge": "^3.2.0",
     "jsonc-parser": "^2.0.3",
-    "jsx-alone-core": "file:../jsx-alone/jsx-alone-core",
-    "jsx-alone-dom": "file:../jsx-alone/jsx-alone-dom",
-    "jsx-alone-dom-dom": "file:../jsx-alone/jsx-alone-dom-dom",
-    "jsx-alone-string": "file:../jsx-alone/jsx-alone-string",
+    "jsx-alone-core": "0.0.4",
+    "jsx-alone-dom": "0.0.4",
+    "jsx-alone-dom-dom": "0.0.5",
+    "jsx-alone-string": "0.0.4",
     "monaco-editor": "^0.15.6",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.2",
-    "ts-simple-ast": "^21.0.4",
-    "vscode-languageserver-types": "^3.14.0"
+    "ts-simple-ast": "^21.0.4"
   },
   "devDependencies": {
     "@types/expect-puppeteer": "^3.3.1",
     "@types/jest": "^24.0.6",
     "@types/jest-environment-puppeteer": "^4.0.0",
-    "@types/puppeteer": "^1.12.1",
+    "@types/puppeteer": "^1.20.0",
     "@types/react": "^16.8.7",
     "@types/react-dom": "^16.8.2",
     "@types/react-redux": "^7.0.1",
@@ -65,9 +64,11 @@
     "p-queue": "^3.2.0",
     "parcel": "^1.11.0",
     "prettier": "^1.16.4",
+    "puppeteer": "^1.20.0",
     "terser": "^3.16.1",
     "ts-jest": "^24.0.0",
-    "typescript": "^3.2.2"
+    "typescript": "^3.2.2",
+    "vscode-languageserver-types": "^3.14.0"
   },
   "repository": {
     "type": "git",

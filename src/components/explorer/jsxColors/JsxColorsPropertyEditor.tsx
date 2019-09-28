@@ -19,7 +19,7 @@ export class JsxColorsPropertyEditor<T extends keyof CSSProperties = keyof CSSPr
         type={getInputType(this.props.propertyType)}
         value={this.props.propertyValue || getDefaultPropertyValue(this.props.propertyType)}
         onChange={e => {
-          this.props.onChange(e.currentTarget.value)
+          this.props.onChange(e.currentTarget.value as any)
         }}
       />
     )

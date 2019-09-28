@@ -21,25 +21,27 @@ ${buildSelectorFor(c)} {
 const classesSafeOrderForCss: ClassName[] = [ClassName.JsxText, ClassName.JsxExpression]
 
 function getOrderedClasses(skin: JsxSyntaxSkin): JsxColorsClass[] {
-  return keys<ClassName>(skin)
-    .filter(c => skin[c] && typeof skin[c] === 'object' && keys(skin[c]!).length)
-    .sort((a, b) => {
-      if (classesSafeOrderForCss.includes(a) && classesSafeOrderForCss.includes(b)) {
-        return classesSafeOrderForCss.indexOf(a) < classesSafeOrderForCss.indexOf(b) ? -1 : 1
-      } else if (classesSafeOrderForCss.includes(a)) {
-        return -1
-      } else {
-        return 1
-      }
-    })
-    // .map(className => jsxColorsClasses.find(c => c.name === className))
-    .map(
-      className =>
-        jsxColorsClasses.find(c => c.name === className) ||
-        ((skin[className]! as any)._isArtificial ? skin[className] : undefined),
-    )
-    // .map(c=>skin[c])
-    .filter(c => c) as JsxColorsClass[]
+  return (
+    keys<ClassName>(skin)
+      .filter(c => skin[c] && typeof skin[c] === 'object' && keys(skin[c]!).length)
+      .sort((a, b) => {
+        if (classesSafeOrderForCss.includes(a) && classesSafeOrderForCss.includes(b)) {
+          return classesSafeOrderForCss.indexOf(a) < classesSafeOrderForCss.indexOf(b) ? -1 : 1
+        } else if (classesSafeOrderForCss.includes(a)) {
+          return -1
+        } else {
+          return 1
+        }
+      })
+      // .map(className => jsxColorsClasses.find(c => c.name === className))
+      .map(
+        className =>
+          jsxColorsClasses.find(c => c.name === className) ||
+          ((skin[className]! as any)._isArtificial ? skin[className] : undefined),
+      )
+      // .map(c=>skin[c])
+      .filter(c => c) as JsxColorsClass[]
+  )
 }
 
 export function buildSelectorFor(c: JsxColorsClass): string {
@@ -54,9 +56,7 @@ export function buildSelectorFor(c: JsxColorsClass): string {
           }
           if (valueClass.selectorMode === 'union') {
             throw new Error(
-              `'value' property cannot reference a class with selectorMode===union and class ${
-                c.name
-              } value reference class ${valueClass.name} which does.`,
+              `'value' property cannot reference a class with selectorMode===union and class ${c.name} value reference class ${valueClass.name} which does.`,
             )
           }
           return buildSelectorFor(valueClass)

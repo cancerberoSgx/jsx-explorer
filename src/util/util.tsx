@@ -1,5 +1,3 @@
-import {CSSProperties} from 'react'
-
 export function query<T extends HTMLElement = HTMLElement>(s: string): T {
   return document.querySelector<T>(s)!
 }
@@ -75,6 +73,7 @@ export class Emitter<E = any, L extends (e: E) => void = (e: E) => void> {
     this.l.forEach(l => l(e))
   }
 }
+
 export function delay(ms: number): Promise<void> {
   return new Promise(resolve => {
     setTimeout(() => {

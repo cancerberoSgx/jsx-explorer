@@ -51,6 +51,7 @@ export async function start() {
 
   // its kind of important that div is attached - mostly because of monaco
   ReactDom.render(
+    //@ts-ignore
     <Provider store={store}>
       <App />
     </Provider>,

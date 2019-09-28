@@ -10,6 +10,7 @@ export function showInModal(body: JSX.Element | string, title = 'modal') {
   if (!created) {
     const div = document.createElement('div')
     document.body.appendChild(div)
+    //@ts-ignore
     ReactDOM.render(<Modal listenTo={emitter} />, div)
     created = true
   }

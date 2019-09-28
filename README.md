@@ -1,6 +1,7 @@
 # JSX Explorer
 
-(https://cancerberosgx.github.io/jsx-explorer/)[JSX Explorer Playground]
+[JSX Explorer Playground](https://cancerberosgx.github.io/jsx-explorer/)
+
 Playground to Write, parse, analyze, visualize JSX/TSX code in several ways: 
 
  * Elements Explorer shows the result JSX expressions translated to React.createElement() or similar call.
