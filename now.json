@@ -1,0 +1,5 @@
+{
+  "builds": [
+    { "src": "docs/*", "use": "@now/static" }
+  ]
+}
