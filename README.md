@@ -1,6 +1,6 @@
 # JSX Explorer
 
-[JSX Explorer Playground](https://cancerberosgx.github.io/jsx-explorer/)
+[JSX Explorer Playground](https://jsx-explorer.cancerbero.now.sh/)
 
 Playground to Write, parse, analyze, visualize JSX/TSX code in several ways: 
 
