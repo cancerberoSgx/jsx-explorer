@@ -13,7 +13,7 @@
     "build-dev": "export NODE_ENV=development ; parcel build src/index.html -d docs  --no-minify --no-content-hash  --no-source-maps && rm -rf docs/index.appcache",
     "docs-local": "rm -rf docs && npm run docs-no-copy && gzip docs/*.* && npx http-server docs --gzip",
     "start": "export NODE_ENV=development ; sh src-changed.sh",
-    "docs": "npm run docs-no-copy && npm run copy",
+    "docs": "npm run docs-no-copy && npm run copy && mv docs public",
     "docs-no-copy": "npx tsc && export NODE_ENV=production && npm run pack-all && rm -rf docs && sh build-workers.sh && parcel build src/index.html -d docs --no-content-hash --detailed-report --public-url './' ",
     "clean": "rm -rf build/ dist/ .cache docs",
     "prettier": " npx prettier  --write --arrow-parens avoid --parser typescript --use-tabs false --no-semi true --single-quote true --tab-width 2 --trailing-comma all --end-of-line lf --prose-wrap preserve --print-width 120 --no-bracket-spacing  --jsx-bracket-same-line true \"src/**/*.ts*\"",
